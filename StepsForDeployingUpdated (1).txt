@@ -1,4 +1,4 @@
-STEPS FOR DEPLOYING - DO NOT POINT VIA VISUAL STUDIO (DOES NOT WORK)
+STEPS FOR DEPLOYING - DO NOT POINT VIA VISUAL STUDIO'S INTEGRATED DOCKER (DOES NOT WORK)
 --------------------
 EC2/DOCKER CREATION
 1. Create both an AWS and Docker account.
@@ -13,7 +13,7 @@ EC2/DOCKER CREATION
 
 6. This should provide you with a copy/paste text (ubuntu@ec2-192.192.192.192)
 
-7. Paste this along with the 'ssh -i .\'pemkeyname'.pem and you should be good. (May need to remove inherited permissions on pem key because windows is lame.
+7. Paste this along with the 'ssh -i .\'pemkeyname'.pem and you should be good. (May need to remove inherited permissions on pem key because windows is lame **I mention how to do this in my REDACTED deployment video if you're looking for help**)
 
 8. Once in create an account using 'su adduser' and also grant them sudo privileges.
 
@@ -25,24 +25,27 @@ EC2/DOCKER CREATION
 
 
 DOCKER PORTION / RUNNING SCRIPT THROUGH INSTANCE
-1. Rebuild both solutions (from the sprint 2 branch on github)
+1. Rebuild both solutions (be sure to build from whatever branch your group as a whole is working from **Discuss source control the first day of your group meeting.. I promise it will pay off**)
 
-2. Build Both Images (before deleting old solutions, go to file explorer and copy link
-			FURTHERMORE, dont forget the '.' at the end for root)
-	- docker build -f BucStop/Dockerfile -t sirethan/bucstop .
-	- docker build -f GameMicroServer/Dockerfile -t sirethan/gamemicro . (OPTIONAL)
-	- docker build -f APIGateway/Dockerfile -t sirethan/gamemicroapi .
+*BE SURE TO CHANGE 'sirethan' WITH YOUR DOCKER USERNAME*
+2. Build Both Images (go to file explorer, and navigate to your repos' locale and type 'cmd'
+			FURTHERMORE, dont forget the '.' at the end for root on these commands)
+	- docker build -f BucStop/Dockerfile         -t sirethan/bucstop .
+	- docker build -f APIGateway/Dockerfile      -t sirethan/gamemicroapi .
 	- docker build -f GameMicroServer/Dockerfile -t sirethan/gamemicrosnake .
 	- docker build -f GameMicroServer/Dockerfile -t sirethan/gamemicropong .
 	- docker build -f GameMicroServer/Dockerfile -t sirethan/gamemicrotetris .
+	- docker build -f GameMicroServer/Dockerfile -t sirethan/gamemicro . (THIS ONE IS ENTIRELY OPTIONAL, it is our leftover Microservice that we started with)
 3. Push Both Images (VIA CMD)
 	- docker push sirethan/bucstop
-	- docker push sirethan/gamemicro (OPTIONAL)
 	- docker push sirethan/gamemicroapi
 	- docker push sirethan/gamemicrosnake
 	- docker push sirethan/gamemicropong
 	- docker push sirethan/gamemicrotetris
+	- docker push sirethan/gamemicro (OPTIONAL, if you're looking to build the old Microservice)
 
 4. Go to the EC2 instance and run './firstDeploy.sh'
 
-5. For additional resources. Check Kinserpedia or the offical 'How to Deploy BucStop' file.
+5. For additional resources. Check Kinserpedia or the official 'How to Deploy BucStop' file (was not created by our team however it does yield some great information on setting up the ec2 instance and docker repositories)
+6. There is also a newer video on how to deploy BucStop that you may find beneficial linked here - https://www.youtube.com/watch?v=wLctheT-7SE
+7. Lastly, you can always DM me on Discord for clarification! Name: soimethan
